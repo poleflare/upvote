@@ -15,6 +15,8 @@ name = "upvote"
 
 [dependencies]
 actix-web = "4.0.0-beta.8"
+async-graphql = { git = "https://github.com/async-graphql/async-graphql", branch = "actix-web-v4-beta", features = ["chrono", "uuid", "tracing" ] }
+async-graphql-actix-web = { git = "https://github.com/async-graphql/async-graphql", branch = "actix-web-v4-beta" }
 log = "0.4.14"
 pretty_env_logger = "0.4.0"
 
