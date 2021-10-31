@@ -5,6 +5,9 @@ use async_graphql::{EmptyMutation, EmptySubscription, Object, Schema};
 use async_graphql_actix_web::{Request, Response};
 use std::net::TcpListener;
 
+pub mod db;
+pub mod models;
+
 struct QueryRoot;
 
 #[Object]
