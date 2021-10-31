@@ -40,6 +40,7 @@ pub trait DbAdapter {
 pub struct Client {}
 
 impl Client {
+    /// Creates a new client using given adapter.
     pub fn new(adapter: Adapter, file: &str) -> Box<dyn DbAdapter> {
         let client = match adapter {
             Adapter::Sqlite => SQLite::new(file),
