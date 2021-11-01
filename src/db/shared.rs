@@ -1,3 +1,5 @@
+use crate::models::Proposal;
+
 use super::sqlite::SQLite;
 
 #[derive(Debug, PartialEq, Eq)]
@@ -15,26 +17,32 @@ pub enum Status {
 }
 
 #[derive(Debug)]
-pub struct DbError<'a> {
-    pub message: &'a str,
+pub struct DbError {
+    pub message: String,
 }
 
 #[derive(Debug)]
 pub struct Manifest<'a> {
     pub adapter: Adapter,
-    pub table: &'a String,
+    pub host: &'a String,
 }
 
 /// Implements a generic interface between multiple DB-implementations.
 pub trait DbAdapter {
     /// Initiate connection to using configured adapter.
-    fn init_db(&mut self, table_name: &str) -> Result<Status, DbError>;
+    fn init_db(&mut self) -> Result<Status, DbError>;
 
     /// Returns current Client configuration.
     fn get_manifest(&self) -> Manifest;
 
     /// Removes the all storage for the configured adapter, no data will be saved.
-    fn remove(&self, force: bool) -> Result<Status, DbError>;
+    fn remove(&self) -> Result<Status, DbError>;
+
+    fn get_proposal(&self, title: &str) -> Result<Proposal, DbError>;
+
+    fn insert_proposal(&self, p: Proposal) -> Result<Proposal, DbError>;
+
+    fn delete_proposal(&self, p: Proposal) -> Result<(), DbError>;
 }
 
 pub struct Client {}

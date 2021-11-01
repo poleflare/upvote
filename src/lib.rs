@@ -7,6 +7,7 @@ use std::net::TcpListener;
 
 pub mod db;
 pub mod models;
+pub mod repositories;
 
 struct QueryRoot;
 

@@ -7,8 +7,8 @@ pub struct Proposal {
     pub created: DateTime<Utc>,
     pub updated: DateTime<Utc>,
     pub comments: Vec<String>, // comment.id(s)
-    pub group: String,         // group.id
-    pub upvote: Vec<String>,   // User.id(s)
+    pub owner: String,         // group.id
+    pub upvotes: Vec<String>,  // User.id(s)
 }
 
 type UtcStr = str;
@@ -20,8 +20,8 @@ impl Proposal {
         created: Option<&UtcStr>,
         updated: Option<&UtcStr>,
         comments: Option<Vec<String>>,
-        group: String,
-        upvote: Option<Vec<String>>,
+        owner: String,
+        upvotes: Option<Vec<String>>,
     ) -> Self {
         let now = Utc::now();
 
@@ -40,8 +40,8 @@ impl Proposal {
                 Some(c) => c,
                 None => vec![],
             },
-            group,
-            upvote: match upvote {
+            owner,
+            upvotes: match upvotes {
                 Some(v) => v,
                 None => vec![],
             },
@@ -67,8 +67,8 @@ mod test {
 
         assert_eq!(res.title, "test");
         assert_eq!(res.description, "test-desc");
-        assert_eq!(res.group, "test-grp");
+        assert_eq!(res.owner, "test-grp");
         assert_eq!(res.comments.len(), 1);
-        assert_eq!(res.upvote.len(), 2);
+        assert_eq!(res.upvotes.len(), 2);
     }
 }
