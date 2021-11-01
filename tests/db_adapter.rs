@@ -13,11 +13,11 @@ static DB_LOCATION: &str = "./upvote.db";
 fn test_sq_lite_adapter() {
     let mut client = init_db_client();
     let init_status = client.init_db().unwrap();
-    let manifest = client.get_manifest();
+    let config = client.get_config();
 
     assert_eq!(init_status, Status::Ok);
-    assert_eq!(manifest.adapter, upvote::db::Adapter::Sqlite);
-    assert_eq!(manifest.host, DB_LOCATION);
+    assert_eq!(config.adapter, upvote::db::Adapter::Sqlite);
+    assert_eq!(config.host, DB_LOCATION);
 }
 
 #[test]

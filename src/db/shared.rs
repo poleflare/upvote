@@ -22,7 +22,7 @@ pub struct DbError {
 }
 
 #[derive(Debug)]
-pub struct Manifest<'a> {
+pub struct Config<'a> {
     pub adapter: Adapter,
     pub host: &'a String,
 }
@@ -33,7 +33,7 @@ pub trait DbAdapter {
     fn init_db(&mut self) -> Result<Status, DbError>;
 
     /// Returns current Client configuration.
-    fn get_manifest(&self) -> Manifest;
+    fn get_config(&self) -> Config;
 
     /// Removes the all storage for the configured adapter, no data will be saved.
     fn remove(&self) -> Result<Status, DbError>;

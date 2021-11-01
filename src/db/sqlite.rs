@@ -1,4 +1,4 @@
-use super::shared::{Adapter, DbAdapter, DbError, Manifest, Status};
+use super::shared::{Adapter, Config, DbAdapter, DbError, Status};
 use crate::models::Proposal;
 use rusqlite::{Connection, Result};
 use std::env::current_dir;
@@ -79,8 +79,8 @@ impl DbAdapter for SQLite {
         Ok(Status::Ok)
     }
 
-    fn get_manifest(&self) -> Manifest {
-        Manifest {
+    fn get_config(&self) -> Config {
+        Config {
             adapter: Adapter::Sqlite,
             host: &self.file,
         }
