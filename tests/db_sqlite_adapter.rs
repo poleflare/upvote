@@ -1,7 +1,7 @@
 use chrono::Utc;
 use upvote::{
     db::{
-        shared::{DbAdapter, Status},
+        shared::{DbAdapter, ProposalAdapter, Status},
         Adapter, Client,
     },
     models::Proposal,
@@ -70,8 +70,8 @@ fn test_sqlite_get_proposals() {
     client.delete_proposal(&res[1]).unwrap();
 }
 
-fn init_db_client() -> Box<dyn DbAdapter> {
-    let mut client = Client::new(Adapter::Sqlite, DB_LOCATION);
+fn init_db_client() -> impl DbAdapter + ProposalAdapter {
+    let mut client = Client::create(Adapter::Sqlite, DB_LOCATION);
     client.init_db().unwrap();
 
     client

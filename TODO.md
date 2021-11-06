@@ -9,7 +9,7 @@
 - [ ] group
 
 ### sqlite
-- [ ] proposal
+- [x] proposal
 - [ ] user 
 - [ ] comment
 - [ ] group

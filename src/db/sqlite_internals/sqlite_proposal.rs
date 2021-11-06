@@ -27,10 +27,8 @@ impl ProposalAdapter for SQLite {
             .unwrap();
         let mut res = query.query_map([title, owner], db_row_to_proposal).unwrap();
 
-        res.next().unwrap().or_else(|op| {
-            Err(DbError {
-                message: format!("{} -> {}", String::from("failed to find proposal"), op),
-            })
+        res.next().unwrap().map_err(|op| DbError {
+            message: format!("{} -> {}", String::from("failed to find proposal"), op),
         })
     }
 
@@ -94,15 +92,13 @@ impl ProposalAdapter for SQLite {
             )
             .unwrap();
         let res = query.query_map([owner], db_row_to_proposal).unwrap();
-
         let mut result_list: Vec<Proposal> = vec![];
 
-        for r in res {
-            match r {
-                Ok(p) => result_list.push(p),
-                _ => {}
+        res.for_each(|r| {
+            if let Ok(p) = r {
+                result_list.push(p)
             }
-        }
+        });
 
         Ok(result_list)
     }
