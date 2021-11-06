@@ -7,7 +7,7 @@ pub struct Proposal {
     pub created: DateTime<Utc>,
     pub updated: DateTime<Utc>,
     pub comments: Vec<String>, // comment.id(s)
-    pub owner: String,         // group.id
+    pub owner: String,         // owner.id
     pub upvotes: Vec<String>,  // User.id(s)
 }
 
