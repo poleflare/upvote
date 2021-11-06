@@ -3,3 +3,4 @@ test: clean
 
 clean:
 	rm upvote.db
+

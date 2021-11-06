@@ -54,7 +54,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn create() {
+    fn new() {
         let res = Proposal::new(
             "test".to_string(),
             "test-desc".to_string(),

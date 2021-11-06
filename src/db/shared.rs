@@ -1,6 +1,5 @@
-use crate::models::Proposal;
-
 use super::sqlite::SQLite;
+use crate::models::Proposal;
 
 #[derive(Debug, PartialEq, Eq)]
 pub enum Adapter {
