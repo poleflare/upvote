@@ -19,6 +19,8 @@ async-graphql = { git = "https://github.com/async-graphql/async-graphql", branch
 async-graphql-actix-web = { git = "https://github.com/async-graphql/async-graphql", branch = "actix-web-v4-beta" }
 log = "0.4.14"
 pretty_env_logger = "0.4.0"
+chrono = "0.4"
+rusqlite = "0.26.1"
 
 [dev-dependencies]
 actix-rt = "2"
